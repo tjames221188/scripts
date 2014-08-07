@@ -29,9 +29,16 @@ then
 	notexist
 	exit 1
 fi
+DIR=$1
+LEN=${#DIR}-1
 
-for dir in $(ls -d */)
+if [ "${DIR:LEN}" != "/" ]; then
+	DIR=$DIR"/"
+fi
+
+for dir in $(ls -d $DIR*/)
 do
+#        echo $dir/.git
 	if [ -d $dir/.git ]
 	then
 		pushd $dir > /dev/null
